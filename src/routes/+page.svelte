@@ -35,9 +35,9 @@
 	}
 </script>
 
-<div class="p-8 pt-16 sm:pt-8">
+<div class="p-4 sm:p-8 pt-16 sm:pt-8">
 	<h1 class="pb-14 sm:pb-8 text-5xl">EN PERSONA</h1>
-	<div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+	<div class="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-5">
 		<button class="game" on:click={startNewMatch}>
 			<Icon class="m-auto" icon="typcn:plus" />
 		</button>
@@ -68,9 +68,9 @@
 
 <style lang="postcss">
 	.game {
-		@apply flex w-full shadow-2xl rounded-xl h-32 p-3 text-7xl
+		@apply flex w-full shadow-2xl rounded-3xl h-32 p-3 text-7xl
 		text-slate-200 transition active:scale-110
-		bg-gradient-to-br from-violet-800 to-violet-400;
+		bg-gradient-to-tl from-violet-900 to-violet-400;
 	}
 	.game :global(*) {
 		@apply m-auto;

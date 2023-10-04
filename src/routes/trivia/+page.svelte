@@ -3,8 +3,7 @@
 	import { onMount } from 'svelte';
 	import { Circle2 } from 'svelte-loading-spinners';
 	import GameScore from './GameScore.svelte';
-	import SettingsMenu from '$lib/components/SettingsMenu.svelte';
-	import Icon from '@iconify/svelte';
+	import OverlayMenu from '$lib/components/OverlayMenu.svelte';
 	import TriviaQuestionComponent from './TriviaQuestion.svelte';
 	import { triviaMatch } from '$lib/stores/trivia';
 
@@ -49,14 +48,13 @@
 {#if loadingState == 'loaded'}
 	<div class="flex pt-28 pb-10 px-4 text-xl sm:pt-12 sm:pb-4 overflow-hidden h-screen">
 		<GameScore />
-		<SettingsMenu>
-			<button
-				class="px-6 py-4 rounded-2xl bg-green-500 font-bold m-auto mb-0"
-				on:click={restartMatch}
-			>
-				<Icon icon="iconamoon:restart-bold" />
-			</button>
-		</SettingsMenu>
+		<OverlayMenu title="Ajustes">
+			<div class="flex flex-col m-auto w-40">
+				<button class="px-6 py-4 rounded-2xl bg-green-500 font-bold mb-0" on:click={restartMatch}>
+					Reiniciar
+				</button>
+			</div>
+		</OverlayMenu>
 		<TriviaQuestionComponent question={currentQuestion} {refreshQuestions} />
 	</div>
 {:else if loadingState == 'loading'}
