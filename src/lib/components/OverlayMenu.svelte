@@ -5,10 +5,11 @@
 	export let onClose = () => {};
 	export let onOpen = () => {};
 
+	let menuIsOpened = false;
+
 	function closeMenu() {
 		menuIsOpened = false;
 	}
-	let menuIsOpened = true;
 </script>
 
 {#if menuIsOpened}

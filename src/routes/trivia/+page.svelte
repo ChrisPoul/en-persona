@@ -12,6 +12,7 @@
 
 	onMount(async () => {
 		const cachedMatch = localStorage.getItem('triviaMatch');
+		console.log(cachedMatch)
 		if (cachedMatch) {
 			const match: TriviaMatch = JSON.parse(cachedMatch);
 			$triviaMatch = match;
