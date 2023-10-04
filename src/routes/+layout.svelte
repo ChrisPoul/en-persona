@@ -5,7 +5,18 @@
 	// Floating UI for Popups
 	import { computePosition, autoUpdate, flip, shift, offset, arrow } from '@floating-ui/dom';
 	import { storePopup } from '@skeletonlabs/skeleton';
+	import { onMount } from 'svelte';
 	storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
+
+	const version = '0.0.1';
+
+	onMount(() => {
+		const storedVersion = localStorage.getItem('version');
+		if (storedVersion != version) {
+			localStorage.clear();
+			localStorage.setItem('version', version);
+		}
+	});
 </script>
 
 <main class="min-h-screen">

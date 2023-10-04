@@ -11,17 +11,10 @@
 	let loadingState: 'loaded' | 'loading' | 'error' = 'loading';
 
 	onMount(async () => {
-		const cachedMatch = localStorage.getItem('triviaMatch');
-		console.log(cachedMatch)
-		if (cachedMatch) {
-			const match: TriviaMatch = JSON.parse(cachedMatch);
-			$triviaMatch = match;
-			loadingState = 'loaded';
-		} else {
+		if ($triviaMatch.questions.length == 0) {
 			refreshQuestions();
-		}
-		if ($triviaMatch.nextQuestionDelayInSeconds === undefined) {
-			$triviaMatch.nextQuestionDelayInSeconds = 2;
+		} else {
+			loadingState = 'loaded';
 		}
 	});
 
