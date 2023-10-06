@@ -19,11 +19,13 @@
 	<b class="mx-2">Jugadores:</b>
 	<div class="flex flex-col pt-2 gap-2 min-h-[4.5em]">
 		{#if noPlayers}
-			<p class="text-base m-auto">Aún no has añadido ningún jugador</p>
+		<div class="flex w-full h-28 rounded-2xl bg-primary-100">
+			<p class="text-base text-secondary-400 font-semibold m-auto">Aún no has añadido ningún jugador</p>
+		</div>
 		{/if}
 		{#each $match.players as player, playerIndex (player.name)}
 			<div
-				class="flex justify-between bg-white p-2 rounded-2xl text-secondary-500"
+				class="flex justify-between bg-primary-100 p-2 rounded-2xl text-secondary-500"
 				transition:fly={{ duration: 200, x: '100vw', opacity: 100, easing: sineOut }}
 				on:outroend={() => {
 					noPlayers = $match.players.length == 0;

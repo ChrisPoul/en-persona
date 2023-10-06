@@ -11,6 +11,7 @@
 	const maxNumOfPlayers = 16;
 	const minNameLength = 2;
 	const maxNameLength = 14;
+	let playerInputRef: HTMLInputElement;
 
 	function addPlayer() {
 		errorMessage = null;
@@ -35,6 +36,7 @@
 		$match.players.push(player);
 		$match = $match;
 		newPlayerName = '';
+		playerInputRef.focus();
 	}
 	function focus(element: HTMLInputElement) {
 		element.focus();
@@ -57,10 +59,12 @@
 				maxlength={maxNameLength}
 				required
 				use:focus
+				bind:this={playerInputRef}
 				bind:value={newPlayerName}
 			/>
 			<button
-				class="rounded-r-xl bg-secondary-600 py-2 px-3 transition active:bg-secondary-400 active:scale-100"
+				class="rounded-r-xl bg-secondary-600 py-2 px-3 transition
+				active:bg-secondary-400 active:scale-100"
 				type="submit"
 			>
 				<Icon icon="typcn:plus" />

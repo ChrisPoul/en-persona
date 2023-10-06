@@ -7,8 +7,8 @@
 	$: gameTitle = gameTitle.toUpperCase();
 	let errorMessage: string | null = null;
 
-	function focus(element:HTMLInputElement) {
-		element.focus()
+	function focus(element: HTMLInputElement) {
+		element.focus();
 	}
 </script>
 
@@ -22,7 +22,7 @@
 					return;
 				}
 				editing = false;
-				errorMessage = null
+				errorMessage = null;
 				$match.gameTitle = gameTitle;
 			}}
 		>
@@ -35,7 +35,7 @@
 				bind:value={gameTitle}
 			/>
 			<button
-				class="rounded-r-xl bg-blue-500 py-2 px-3 transition active:bg-cyan-500 active:scale-100"
+				class="rounded-r-xl bg-secondary-500 py-2 px-3 transition active:bg-secondary-400 active:scale-100"
 				type="submit"
 			>
 				<Icon icon="iconamoon:check-bold" />
@@ -47,7 +47,7 @@
 			</p>
 		{/if}
 	{:else}
-		<h1 class="flex w-full text-4xl justify-center align-top">
+		<h1 class="flex w-full text-4xl sm:text-5xl md:text-6xl justify-center align-top">
 			{$match.gameTitle}
 			<button
 				class="text-2xl h-full p-1"
