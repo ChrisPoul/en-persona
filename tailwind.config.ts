@@ -13,7 +13,7 @@ export default {
 			themes: {
 				preset: [
 					{
-						name: 'modern',
+						name: 'seafoam',
 						enhancements: true,
 					},
 				],

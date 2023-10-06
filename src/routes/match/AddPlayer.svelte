@@ -44,7 +44,12 @@
 <div>
 	<label class="gap-1">
 		<b class="px-2">Añadir Jugador:</b>
-		<form class="flex text-xl mt-1" on:submit|preventDefault={addPlayer}>
+		{#if errorMessage}
+			<p class="text-lg text-center font-bold text-error-600 py-1">
+				{errorMessage}
+			</p>
+		{/if}
+		<form class="flex text-xl pt-2" on:submit|preventDefault={addPlayer}>
 			<input
 				class="w-full p-2 rounded-l-xl font-semibold"
 				type="text"
@@ -55,16 +60,11 @@
 				bind:value={newPlayerName}
 			/>
 			<button
-				class="rounded-r-xl bg-blue-500 py-2 px-3 transition active:bg-blue-700 active:scale-100"
+				class="rounded-r-xl bg-secondary-600 py-2 px-3 transition active:bg-secondary-400 active:scale-100"
 				type="submit"
 			>
 				<Icon icon="typcn:plus" />
 			</button>
 		</form>
 	</label>
-	{#if errorMessage}
-		<p class="text-lg text-center font-bold text-red-700 py-1">
-			{errorMessage}
-		</p>
-	{/if}
 </div>

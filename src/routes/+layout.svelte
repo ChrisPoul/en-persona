@@ -21,7 +21,8 @@
 
 <main class="min-h-screen">
 	<a
-		class="fixed top-0 left-0 z-10 rounded-xl bg-gray-700 bg-opacity-60 p-3 m-1 transition active:bg-cyan-500"
+		class="fixed top-0 left-0 z-10 rounded-xl bg-gray-700 bg-opacity-60
+		p-3 m-1 transition active:bg-primary-600"
 		href="/"
 	>
 		<Icon icon="ion:caret-back-outline" />

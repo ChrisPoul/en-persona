@@ -17,14 +17,14 @@
 
 <div>
 	<b class="mx-2">Jugadores:</b>
-	<div class="flex flex-col pt-2 gap-2 min-h-[4em] text-slate-700">
+	<div class="flex flex-col pt-2 gap-2 min-h-[4.5em]">
 		{#if noPlayers}
-			<p class="text-base text-slate-200 m-auto">Aún no has añadido ningún jugador</p>
+			<p class="text-base m-auto">Aún no has añadido ningún jugador</p>
 		{/if}
 		{#each $match.players as player, playerIndex (player.name)}
 			<div
-				class="flex justify-between bg-white p-2 rounded-2xl"
-				transition:fly={{ duration: 150, x: '100vw', opacity: 100, easing: sineOut }}
+				class="flex justify-between bg-white p-2 rounded-2xl text-secondary-500"
+				transition:fly={{ duration: 200, x: '100vw', opacity: 100, easing: sineOut }}
 				on:outroend={() => {
 					noPlayers = $match.players.length == 0;
 				}}
@@ -41,7 +41,7 @@
 				</div>
 				<div class="text-xl font-semibold flex gap-1 items-center">
 					<button
-						class="rounded-xl bg-red-500 p-2 transition active:bg-red-700"
+						class="rounded-xl bg-error-500 p-2 transition active:bg-error-700"
 						on:click={() => {
 							player.score = player.score - 1;
 						}}
@@ -49,12 +49,12 @@
 						<Icon icon="typcn:minus" />
 					</button>
 					<input
-						class="p-1 w-11 text-center rounded-lg outline-slate-400 border-2 border-slate-300"
+						class="p-1 w-11 text-center rounded-lg border-2 border-secondary-300"
 						type="number"
 						bind:value={player.score}
 					/>
 					<button
-						class="rounded-xl bg-green-500 p-2 h-auto transition active:bg-green-700"
+						class="rounded-xl bg-success-500 p-2 h-auto transition active:bg-success-700"
 						on:click={() => {
 							player.score = player.score + 1;
 						}}

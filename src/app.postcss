@@ -3,13 +3,6 @@
 @tailwind utilities;
 @tailwind variants;
 
-/* modern theme */
-@font-face {
-	font-family: 'Quicksand';
-	src: url('/fonts/Quicksand.ttf');
-	font-display: swap;
-}
-
 button,
 a {
 	@apply cursor-none transition active:scale-110;
@@ -20,5 +13,5 @@ h1 {
 }
 
 input, textarea {
-	@apply text-slate-700 outline-cyan-400
+	@apply text-secondary-500 outline-none !placeholder-secondary-300
 }
