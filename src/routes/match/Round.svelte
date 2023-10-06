@@ -1,17 +1,18 @@
 <script lang="ts">
 	import Icon from '@iconify/svelte';
-	import { match } from '$lib/stores/match';
 	import { fly } from 'svelte/transition';
 	import { sineOut } from 'svelte/easing';
+	import { rounds, currentRoundIndex } from '$lib/stores/match';
 
-	let noPlayers = $match.players.length == 0;
-	$: if ($match.players.length > 0) {
+	let noPlayers = $rounds[$currentRoundIndex].players.length == 0;
+
+	$: if ($rounds[$currentRoundIndex].players.length > 0) {
 		noPlayers = false;
 	}
 
 	function removePlayer(playerIndex: number) {
-		$match.players.splice(playerIndex, 1);
-		$match = $match;
+		$rounds[$currentRoundIndex].players.splice(playerIndex, 1);
+		$rounds = $rounds;
 	}
 </script>
 
@@ -19,16 +20,18 @@
 	<b class="mx-2">Jugadores:</b>
 	<div class="flex flex-col pt-2 gap-2 min-h-[4.5em]">
 		{#if noPlayers}
-		<div class="flex w-full h-28 rounded-2xl bg-primary-100">
-			<p class="text-base text-secondary-400 font-semibold m-auto">Aún no has añadido ningún jugador</p>
-		</div>
+			<div class="flex w-full h-28 rounded-2xl bg-primary-100">
+				<p class="text-base text-secondary-400 font-semibold m-auto">
+					Aún no has añadido ningún jugador
+				</p>
+			</div>
 		{/if}
-		{#each $match.players as player, playerIndex (player.name)}
+		{#each $rounds[$currentRoundIndex].players as player, playerIndex (player.name)}
 			<div
 				class="flex justify-between bg-primary-100 p-2 rounded-2xl text-secondary-500"
 				transition:fly={{ duration: 200, x: '100vw', opacity: 100, easing: sineOut }}
 				on:outroend={() => {
-					noPlayers = $match.players.length == 0;
+					noPlayers = $rounds[$currentRoundIndex].players.length == 0;
 				}}
 			>
 				<div class="flex items-center">

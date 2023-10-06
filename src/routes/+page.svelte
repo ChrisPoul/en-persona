@@ -1,7 +1,7 @@
 <script>
 	import Icon from '@iconify/svelte';
 	import MovieImg from '$lib/images/ready-set-go.png';
-	import { match } from '$lib/stores/match';
+	import { rounds, currentRoundIndex, match } from '$lib/stores/match';
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
 	import { pb } from '$lib/services/pocketbase';
@@ -14,6 +14,13 @@
 		}
 	});
 	function saveMatch() {
+		const matchIsValidToSave =
+			$rounds[$currentRoundIndex].players.length >= 2 && $match.gameTitle.length > 0;
+
+		if (!matchIsValidToSave) {
+			return;
+		}
+		$match.rounds = $rounds;
 		try {
 			pb.collection('matches').create($match);
 		} catch (error) {
@@ -21,13 +28,17 @@
 		}
 	}
 	function startNewMatch() {
-		const matchIsValidToSave = $match.players.length >= 2 && $match.gameTitle.length > 0;
-		if (matchIsValidToSave) {
-			saveMatch();
-		}
+		saveMatch();
+		$rounds = [
+			{
+				players: [],
+				winner: null
+			}
+		];
+		$currentRoundIndex = 0;
 		$match = {
 			gameTitle: 'Nuevo Juego',
-			players: [],
+			rounds: [],
 			comments: '',
 			created: ''
 		};

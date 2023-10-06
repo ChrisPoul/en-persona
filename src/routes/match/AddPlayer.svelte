@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { match } from '$lib/stores/match';
+	import { rounds, currentRoundIndex } from '$lib/stores/match';
 	import Icon from '@iconify/svelte';
 
 	let newPlayerName = '';
@@ -13,17 +13,19 @@
 	const maxNameLength = 14;
 	let playerInputRef: HTMLInputElement;
 
+	$: currentRound = $rounds[$currentRoundIndex];
+
 	function addPlayer() {
 		errorMessage = null;
 		if (newPlayerName.length < minNameLength) {
 			errorMessage = `El nombre tiene que tener mas de ${minNameLength} letras`;
 			return;
 		}
-		if ($match.players.length == maxNumOfPlayers) {
+		if (currentRound.players.length == maxNumOfPlayers) {
 			errorMessage = `No se pueden agregar mas de ${maxNumOfPlayers} jugadores`;
 			return;
 		}
-		for (const player of $match.players) {
+		for (const player of currentRound.players) {
 			if (newPlayerName == player.name) {
 				errorMessage = `El nombre ${newPlayerName} ya está en uso`;
 				return;
@@ -33,8 +35,8 @@
 			name: newPlayerName,
 			score: 0
 		};
-		$match.players.push(player);
-		$match = $match;
+		currentRound.players.push(player);
+		$rounds = $rounds;
 		newPlayerName = '';
 		playerInputRef.focus();
 	}
