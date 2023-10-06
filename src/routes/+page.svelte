@@ -15,7 +15,7 @@
 	});
 	function saveMatch() {
 		const matchIsValidToSave =
-			$rounds[$currentRoundIndex].players.length >= 2 && $match.gameTitle.length > 0;
+			$rounds[$rounds.length - 1].players.length >= 2 && $match.gameTitle.length > 0;
 
 		if (!matchIsValidToSave) {
 			return;

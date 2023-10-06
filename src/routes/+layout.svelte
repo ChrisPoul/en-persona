@@ -8,7 +8,7 @@
 	import { onMount } from 'svelte';
 	storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
 
-	const version = '0.0.1';
+	const version = '0.0.2';
 
 	onMount(() => {
 		const storedVersion = localStorage.getItem('version');
