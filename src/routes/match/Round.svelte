@@ -28,8 +28,8 @@
 			{#each $rounds[$currentRoundIndex].players as player, playerIndex (player.name)}
 				<div
 					class="flex justify-between bg-primary-100 p-2 rounded-2xl text-secondary-500"
-					in:fly={{ duration: 300, y: '-100vh', opacity: 100, easing: sineOut }}
-					out:fly={{ duration: 300, x: '100vw', opacity: 100, easing: sineOut }}
+					in:fly={{ duration: 400, y: '-100vh', opacity: 100, easing: sineOut }}
+					out:fly={{ duration: 200, x: '100vw', opacity: 100, easing: sineOut }}
 					on:outroend={() => {
 						noPlayers = $rounds[$currentRoundIndex].players.length == 0;
 					}}

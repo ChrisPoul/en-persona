@@ -17,21 +17,30 @@
 			winner: null
 		});
 		$rounds = $rounds;
-		$currentRoundIndex += 1;
+		$currentRoundIndex = $rounds.length - 1;
 	}
 </script>
 
-<div class="relative card pb-3 w-full">
+<div class="card pb-3 w-full">
 	<TabGroup
 		active="bg-primary-700 bg-opacity-60"
-		rounded="rounded-none first:rounded-tl-xl last:rounded-tr-xl cursor-none"
+		rounded="rounded-none first:rounded-tl-xl last:rounded-tr-xl last:p-0 cursor-none"
 	>
-		<div class="flex pr-24">
+		<div class="flex">
 			{#each $rounds as _, index}
 				<Tab bind:group={$currentRoundIndex} name={`tab${index}`} value={index}>
 					<span>{index + 1}</span>
 				</Tab>
 			{/each}
+			<Tab bind:group={$currentRoundIndex} name={`tab-with-add-button`} value={null}>
+				<button
+					class="bg-secondary-500 py-2 px-3 transition
+          active:bg-secondary-400 rounded-tr-xl"
+					on:click={startNewRound}
+				>
+					New
+				</button>
+			</Tab>
 		</div>
 
 		<!-- Tab Panels --->
@@ -41,11 +50,4 @@
 			{/key}
 		</svelte:fragment>
 	</TabGroup>
-	<button
-		class="absolute top-0 right-0 rounded-tr-xl bg-secondary-500 py-2 px-3 transition
-    active:bg-secondary-400"
-		on:click={startNewRound}
-	>
-		New
-	</button>
 </div>
