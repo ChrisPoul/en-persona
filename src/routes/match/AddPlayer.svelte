@@ -40,9 +40,6 @@
 		newPlayerName = '';
 		playerInputRef.focus();
 	}
-	function focus(element: HTMLInputElement) {
-		element.focus();
-	}
 </script>
 
 <div>
@@ -60,7 +57,6 @@
 				placeholder="Nombre del Jugador"
 				maxlength={maxNameLength}
 				required
-				use:focus
 				bind:this={playerInputRef}
 				bind:value={newPlayerName}
 			/>

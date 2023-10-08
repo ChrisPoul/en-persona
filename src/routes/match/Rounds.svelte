@@ -21,8 +21,11 @@
 	}
 </script>
 
-<div class="relative">
-	<TabGroup>
+<div class="relative card pb-3 w-full">
+	<TabGroup
+		active="bg-primary-700 bg-opacity-60"
+		rounded="rounded-none first:rounded-tl-xl last:rounded-tr-xl cursor-none"
+	>
 		<div class="flex pr-24">
 			{#each $rounds as _, index}
 				<Tab bind:group={$currentRoundIndex} name={`tab${index}`} value={index}>
@@ -39,7 +42,7 @@
 		</svelte:fragment>
 	</TabGroup>
 	<button
-		class="absolute top-0 right-0 rounded-t-xl bg-secondary-500 py-2 px-3 transition
+		class="absolute top-0 right-0 rounded-tr-xl bg-secondary-500 py-2 px-3 transition
     active:bg-secondary-400"
 		on:click={startNewRound}
 	>

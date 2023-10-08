@@ -4,6 +4,10 @@
 
 	let editing = false;
 	let gameTitle = $match.gameTitle;
+	const maxTitleLenght = 45;
+	$: if (gameTitle.length == 0) {
+		editing = true;
+	}
 	$: gameTitle = gameTitle.toUpperCase();
 	let errorMessage: string | null = null;
 
@@ -30,6 +34,7 @@
 				class="w-full p-2 rounded-l-xl text-center font-semibold"
 				type="text"
 				placeholder="Nombre del Juego"
+				maxlength={maxTitleLenght}
 				required
 				use:focus
 				bind:value={gameTitle}
