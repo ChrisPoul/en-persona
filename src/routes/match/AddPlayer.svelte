@@ -35,7 +35,7 @@
 			name: newPlayerName,
 			score: 0
 		};
-		currentRound.players.push(player);
+		currentRound.players.splice(0, 0, player);
 		$rounds = $rounds;
 		newPlayerName = '';
 		playerInputRef.focus();
