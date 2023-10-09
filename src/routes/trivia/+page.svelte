@@ -40,7 +40,7 @@
 </script>
 
 {#if loadingState == 'loaded'}
-	<div class="flex pt-28 pb-10 px-4 text-xl sm:pt-12 sm:pb-4 overflow-hidden h-full">
+	<div class="flex pt-28 pb-10 px-4 text-xl sm:pt-12 sm:pb-4 h-full">
 		<GameScore />
 		<OverlayMenu title="Ajustes">
 			<div class="flex flex-col m-auto w-40">

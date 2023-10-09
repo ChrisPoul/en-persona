@@ -19,7 +19,7 @@
 	});
 </script>
 
-<main>
+<main class="min-h-screen h-full bg-gradient-to-b from-surface-800 to-secondary-700">
 	<a
 		class="fixed top-0 left-0 z-10 rounded-xl bg-gray-700 bg-opacity-60
 		p-3 m-1 transition active:bg-primary-600"
