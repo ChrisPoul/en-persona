@@ -13,16 +13,21 @@
 			ongoingMatch = true;
 		}
 	});
-	function saveMatch() {
+	async function saveMatch() {
 		const matchIsValidToSave =
 			$rounds[$rounds.length - 1].players.length >= 2 && $match.gameTitle.length > 0;
 
 		if (!matchIsValidToSave) {
 			return;
 		}
-		$match.rounds = $rounds;
 		try {
-			pb.collection('matches').create($match);
+			const start = Date.now();
+			await pb.collection('matches').create({
+				gameTitle: $match.gameTitle,
+				rounds: $rounds,
+				comments: $match.comments
+			});
+			console.log(`Time elapsed: ${Date.now() - start} ms`);
 		} catch (error) {
 			console.log('Now internet');
 		}
@@ -37,10 +42,10 @@
 		];
 		$currentRoundIndex = 0;
 		$match = {
-			gameTitle: 'Nuevo Juego',
-			rounds: [],
+			gameTitle: '',
 			comments: '',
-			created: ''
+			started: '',
+			ended: ''
 		};
 		goto('/match');
 	}

@@ -6,12 +6,12 @@ interface Player {
 interface Match {
 	id?: string;
 	gameTitle: string;
-	rounds: Round[];
 	comments: string;
-	created: string;
+	started: string;
+	ended: string;
 }
 
 interface Round {
 	players: Player[];
-	winner: Player | null 
+	winner: Player | null;
 }

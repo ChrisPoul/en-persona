@@ -6,9 +6,9 @@ let storedMatch: Match | null = getFromLocalStorage(localKey);
 if (!storedMatch) {
 	storedMatch = {
 		gameTitle: '',
-		rounds: [],
 		comments: '',
-		created: ''
+		started: '',
+		ended: ''
 	};
 }
 
