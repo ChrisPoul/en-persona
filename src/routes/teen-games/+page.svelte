@@ -15,7 +15,7 @@
 	});
 </script>
 
-<div class="flex flex-col h-screen w-full pb-10 px-2 sm:pb-0">
+<div class="flex flex-col h-screen w-full pb-10 px-2 sm:pb-2">
 	{#if loaded}
 		<div class="grid m-auto w-full">
 			{#key teenQuestion.question}

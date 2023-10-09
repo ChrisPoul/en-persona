@@ -84,8 +84,8 @@
 
 <style lang="postcss">
 	.game {
-		@apply flex rounded-3xl bg-gradient-to-t from-primary-600 to-secondary-400
+		@apply flex rounded-3xl bg-gradient-to-br from-primary-600 to-transparent
 		shadow-xl justify-center items-center text-7xl transition text-primary-100
-		h-36 sm:h-40 md:h-48 lg:h-56 p-3;
+		h-32 sm:h-40 md:h-48 lg:h-56 p-3;
 	}
 </style>

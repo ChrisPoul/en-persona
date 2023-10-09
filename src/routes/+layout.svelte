@@ -19,7 +19,7 @@
 	});
 </script>
 
-<main class="min-h-screen">
+<main>
 	<a
 		class="fixed top-0 left-0 z-10 rounded-xl bg-gray-700 bg-opacity-60
 		p-3 m-1 transition active:bg-primary-600"
