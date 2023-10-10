@@ -21,7 +21,7 @@
 	<AddPlayer />
 	<div class="flex flex-col gap-2 pt-2">
 		<b class="pl-2">Jugadores:</b>
-		<div class="flex flex-col gap-2 min-h-[4.5em]">
+		<div class="flex flex-col gap-2 min-h-[4.5em] sm:min-h-[2em]">
 			{#if noPlayers}
 				<p class="text-base font-semibold m-auto">Aún no has añadido ningún jugador</p>
 			{/if}
