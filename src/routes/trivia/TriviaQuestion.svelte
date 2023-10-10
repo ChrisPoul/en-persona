@@ -5,8 +5,10 @@
 	export let question: TriviaQuestion;
 	export let refreshQuestions: () => void;
 
+	let nextQuestionDelayInSeconds = 2;
+
 	let selectedAnswer = '';
-	$: questionWasAnswered = $triviaMatch.questionWasAnswered;
+	let questionWasAnswered = false;
 
 	function submitAnswer(answer: string) {
 		selectedAnswer = answer;
@@ -15,13 +17,13 @@
 		} else {
 			$triviaMatch.players[1].score += 1;
 		}
-		$triviaMatch.questionWasAnswered = true;
+		questionWasAnswered = true;
 		setTimeout(() => {
 			nextQuestion();
-		}, $triviaMatch.nextQuestionDelayInSeconds * 1000);
+		}, nextQuestionDelayInSeconds * 1000);
 	}
 	function nextQuestion() {
-		$triviaMatch.questionWasAnswered = false;
+		questionWasAnswered = false;
 		if ($triviaMatch.currentQuestionIndex == $triviaMatch.questions.length - 1) {
 			refreshQuestions();
 		} else {
@@ -31,7 +33,7 @@
 	}
 </script>
 
-<div class="grid">
+<div class="grid overflow-hidden">
 	{#key question.question.text}
 		<div
 			class="col-start-1 row-start-1"
@@ -48,12 +50,9 @@
 				<div class="flex flex-col gap-4 w-full sm:m-auto">
 					{#each question.options as option}
 						<button
-							class="bg-slate-100 text-slate-700 font-semibold text-2xl p-3 rounded-2xl"
-							class:uselected-answer={option != selectedAnswer &&
-								option != question.correctAnswer &&
-								questionWasAnswered}
-							class:correct-answer={option == question.correctAnswer && questionWasAnswered}
+							class="rounded-2xl variant-filled font-semibold text-2xl p-3 disabled:opacity-70"
 							class:selected-answer={option == selectedAnswer}
+							class:correct-answer={option == question.correctAnswer && questionWasAnswered}
 							on:click={() => {
 								submitAnswer(option);
 							}}
@@ -70,12 +69,9 @@
 
 <style lang="postcss">
 	.correct-answer {
-		@apply bg-green-400 border-2 border-green-300;
+		@apply variant-filled-success disabled:!opacity-90;
 	}
 	.selected-answer {
-		@apply border-2 border-indigo-700;
-	}
-	.uselected-answer {
-		@apply opacity-70;
+		@apply bg-white disabled:!opacity-90;
 	}
 </style>

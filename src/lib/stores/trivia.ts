@@ -11,9 +11,7 @@ if (!storedMatch) {
 		players: [
 			{ name: 'Tú', score: 0 },
 			{ name: 'Ignorancia', score: 0 }
-		],
-		questionWasAnswered: false,
-		nextQuestionDelayInSeconds: 2
+		]
 	};
 }
 

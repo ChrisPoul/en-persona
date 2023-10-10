@@ -10,6 +10,4 @@ interface TriviaMatch {
 	questions: TriviaQuestion[];
 	currentQuestionIndex: number;
 	players: Player[];
-	questionWasAnswered: boolean;
-	nextQuestionDelayInSeconds: number;
 }

@@ -67,8 +67,8 @@
 			<h1 class="font-semibold text-4xl m-0">{currentMovie.title}</h1>
 			<span class="font-medium pt-1">{currentMovie.release_date}</span>
 			<button
-				class="bg-pink-600 rounded-2xl py-3 px-5 m-auto mb-2 mt-6
-					transition active:bg-rose-600"
+				class="btn bg-gradient-to-br variant-gradient-error-warning
+				m-auto py-3 mb-2 mt-6 font-bold text-lg"
 				on:click={changeMovie}
 			>
 				Otra Pelicula
