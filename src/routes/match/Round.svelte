@@ -35,18 +35,18 @@
 					}}
 				>
 					<div class="flex items-center">
-						<button
+						<button class="btn-icon variant-ghost-secondary h-6 w-6"
 							on:click={() => {
 								removePlayer(playerIndex);
 							}}
 						>
-							<Icon class="text-3xl" icon="typcn:delete" />
+							<Icon class="text-2xl" icon="typcn:delete" />
 						</button>
 						<span class="font-semibold text-2xl w-28">{player.name}</span>
 					</div>
 					<div class="text-xl font-semibold flex gap-1 items-center">
 						<button
-							class="rounded-xl bg-error-500 p-2 transition active:bg-error-700"
+							class="btn variant-filled-error p-3"
 							on:click={() => {
 								player.score = player.score - 1;
 							}}
@@ -59,7 +59,7 @@
 							bind:value={player.score}
 						/>
 						<button
-							class="rounded-xl bg-success-500 p-2 h-auto transition active:bg-success-700"
+							class="btn variant-filled-success p-3"
 							on:click={() => {
 								player.score = player.score + 1;
 							}}

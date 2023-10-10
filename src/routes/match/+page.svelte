@@ -3,6 +3,7 @@
 	import CommentSection from './CommentSection.svelte';
 	import { FileButton } from '@skeletonlabs/skeleton';
 	import Rounds from './Rounds.svelte';
+	import Timer from './Timer.svelte';
 </script>
 
 <div class=" overflow-hidden text-3xl px-3 pb-14 pt-9 sm:pt-6">
@@ -11,7 +12,8 @@
 		<div class="flex flex-col gap-5 w-full sm:order-last">
 			<Rounds />
 		</div>
-		<div class="card px-2 py-4 w-full">
+		<div class="card px-2 pt-4 pb-6 w-full h-min">
+			<Timer/>
 			<CommentSection />
 			<div class="flex justify-center pt-5">
 				<FileButton name="files" button="btn variant-filled text-xl">Subir Foto</FileButton>

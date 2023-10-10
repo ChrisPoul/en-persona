@@ -61,8 +61,7 @@
 				bind:value={newPlayerName}
 			/>
 			<button
-				class="rounded-r-xl bg-secondary-600 py-2 px-3 transition
-				active:bg-secondary-400 active:scale-100"
+				class="btn variant-filled-secondary rounded-l-none bgpy-2 px-3"
 				type="submit"
 			>
 				<Icon icon="typcn:plus" />
