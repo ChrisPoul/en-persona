@@ -18,19 +18,21 @@
 		on:click={closeMenu}
 	/>
 	<div
-		class="flex flex-col card z-30 pt-7 p-5 w-80 sm:w-96 m-auto min-h-[15em] text-center
+		class="flex flex-col card bg-gradient-to-tl variant-gradient-secondary-primary opacity-95
+		z-30 pt-7 p-5 w-80 sm:w-96 m-auto min-h-[15em] text-center
 		-translate-x-1/2 -translate-y-1/2 fixed top-1/2 left-1/2"
 	>
-		<h1 class="text-3xl pb-3">{title}</h1>
-		<slot />
-		<button
-			class="px-6 py-4 rounded-2xl bg-green-500 font-bold m-auto mb-0"
-			on:click={() => {
-				menuIsOpened = false;
-				onClose();
-			}}
-			>Continuar
-		</button>
+		<h1 class="text-4xl pb-3">{title}</h1>
+		<div class="flex flex-col m-auto w-56 gap-4 menu">
+			<slot />
+			<button
+				on:click={() => {
+					menuIsOpened = false;
+					onClose();
+				}}
+				>Continuar
+			</button>
+		</div>
 	</div>
 {:else}
 	<button
@@ -44,3 +46,9 @@
 		<Icon icon="carbon:settings" />
 	</button>
 {/if}
+
+<style lang="postcss">
+	:global(.menu button) {
+		@apply px-6 py-4 rounded-2xl bg-green-500 font-bold;
+	}
+</style>

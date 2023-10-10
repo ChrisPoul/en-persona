@@ -20,3 +20,5 @@ export const triviaMatch = writable(storedMatch);
 triviaMatch.subscribe((value) => {
 	localStorage.setItem(localKey, JSON.stringify(value));
 });
+
+export const nextQuestionDelayInSeconds = writable(2)

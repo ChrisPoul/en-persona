@@ -1,11 +1,10 @@
 <script lang="ts">
-	import { triviaMatch } from '$lib/stores/trivia';
+	import { nextQuestionDelayInSeconds, triviaMatch } from '$lib/stores/trivia';
 	import { fly } from 'svelte/transition';
 
 	export let question: TriviaQuestion;
 	export let refreshQuestions: () => void;
 
-	let nextQuestionDelayInSeconds = 2;
 
 	let selectedAnswer = '';
 	let questionWasAnswered = false;
@@ -20,7 +19,7 @@
 		questionWasAnswered = true;
 		setTimeout(() => {
 			nextQuestion();
-		}, nextQuestionDelayInSeconds * 1000);
+		}, $nextQuestionDelayInSeconds * 1000);
 	}
 	function nextQuestion() {
 		questionWasAnswered = false;
