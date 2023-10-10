@@ -3,6 +3,7 @@
 
 	let seconds = 0;
 	let timerRunning = false;
+	$: formatedTime = new Date(seconds * 1000).toISOString().substring(14, 19);
 
 	$: if (timerRunning) {
 		setTimeout(() => {
@@ -11,8 +12,8 @@
 	}
 </script>
 
-<div class="flex justify-between pl-1 ">
-	<span class="font-semibold">Timer: {seconds}</span>
+<div class="flex justify-between pl-1">
+	<span class="flex items-center font-semibold">Timer: {formatedTime}</span>
 	<div>
 		<button
 			class="btn-icon variant-ghost-error"

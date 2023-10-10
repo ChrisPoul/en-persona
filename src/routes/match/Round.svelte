@@ -17,7 +17,7 @@
 	}
 </script>
 
-<div class="p-2 pt-0">
+<div class="p-2 sm:px-3 pt-0">
 	<AddPlayer />
 	<div class="flex flex-col gap-2 pt-2">
 		<b class="pl-2">Jugadores:</b>

@@ -12,7 +12,7 @@
 		<div class="flex flex-col gap-5 w-full sm:order-last">
 			<Rounds />
 		</div>
-		<div class="card px-2 pt-4 pb-6 w-full h-min">
+		<div class="card flex flex-col gap-2 px-3 pt-4 pb-6 w-full h-min">
 			<Timer/>
 			<CommentSection />
 			<div class="flex justify-center pt-5">
