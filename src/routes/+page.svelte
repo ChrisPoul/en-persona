@@ -21,15 +21,13 @@
 			return;
 		}
 		try {
-			const start = Date.now();
 			await pb.collection('matches').create({
 				gameTitle: $match.gameTitle,
 				rounds: $rounds,
 				comments: $match.comments
 			});
-			console.log(`Time elapsed: ${Date.now() - start} ms`);
 		} catch (error) {
-			console.log('Now internet');
+			console.log('No internet');
 		}
 	}
 	function startNewMatch() {

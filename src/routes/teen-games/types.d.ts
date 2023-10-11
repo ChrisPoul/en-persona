@@ -1,11 +1,12 @@
 type TeenGame = 'DARE' | 'NHIE' | 'TRUTH' | 'WYR';
+type TeenGameRating = 'pg' | 'pg13' | 'r';
 
 interface TeenQuestion {
 	type: TeenGame;
-	rating: 'pg' | 'pg13' | 'r';
+	rating: TeenGameRating;
 	question: string;
 	translations: TeenQuestionTranslations;
 }
 interface TeenQuestionTranslations {
-	es: string;
+	es: string | null;
 }

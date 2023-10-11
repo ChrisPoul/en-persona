@@ -1,7 +1,7 @@
-export async function getTeenQuestion(game: TeenGame) {
+export async function getTeenQuestion(game: TeenGame, rating: TeenGameRating) {
 	const baseUrl = `https://api.truthordarebot.xyz/v1/${game.toLowerCase()}`;
 	const params = new URLSearchParams({
-		rating: 'r'
+		rating: rating
 	});
 	const url = `${baseUrl}?${params}`;
 	const options = {

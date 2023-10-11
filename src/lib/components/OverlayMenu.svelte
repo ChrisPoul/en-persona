@@ -23,7 +23,7 @@
 		-translate-x-1/2 -translate-y-1/2 fixed top-1/2 left-1/2"
 	>
 		<h1 class="text-4xl pb-3">{title}</h1>
-		<div class="flex flex-col m-auto w-56 gap-4 menu">
+		<div class="flex flex-col m-auto w-56 gap-2 menu">
 			<slot />
 			<button
 				on:click={() => {
