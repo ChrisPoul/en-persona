@@ -20,8 +20,8 @@
 <div class="grid grid-cols-2 p-2 sm:px-10 gap-x-5 gap-y-4">
 	{#each games as game}
 		<button
-			class="px-3 py-5 rounded-2xl bg-blue-500 font-bold shadow-xl w-full sm:text-2xl
-      disabled:bg-gray-400 disabled:border-0 mx-auto text-xl origin-bottom-right"
+			class="px-3 py-4 btn variant-filled-surface font-bold shadow-xl w-full sm:text-2xl
+      mx-auto text-xl origin-bottom-right"
 			class:selected={game == $currentGame}
 			on:click={async () => {
 				$teenQuestion = await getTeenQuestion(game, $currentRating);
@@ -43,6 +43,6 @@
 
 <style lang="postcss">
 	.selected {
-		@apply bg-slate-200 border-2 border-cyan-500 text-slate-600;
+		@apply variant-ghost-surface text-primary-400;
 	}
 </style>
