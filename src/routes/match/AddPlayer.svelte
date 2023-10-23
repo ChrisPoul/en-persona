@@ -31,9 +31,14 @@
 				return;
 			}
 		}
+		const scoresTotal = currentRound.players.reduce((previousTotal, currentPlayer) => {
+			return previousTotal + currentPlayer.score;
+		}, 0);
+		const totalPlayers = currentRound.players.length > 0 ? currentRound.players.length : 1;
+		const avarageScore = Math.floor(scoresTotal / totalPlayers);
 		let player: Player = {
 			name: newPlayerName,
-			score: 0
+			score: avarageScore
 		};
 		currentRound.players.splice(0, 0, player);
 		$rounds = $rounds;
@@ -60,10 +65,7 @@
 				bind:this={playerInputRef}
 				bind:value={newPlayerName}
 			/>
-			<button
-				class="btn variant-filled-secondary rounded-l-none bgpy-2 px-3"
-				type="submit"
-			>
+			<button class="btn variant-filled-secondary rounded-l-none bgpy-2 px-3" type="submit">
 				<Icon icon="typcn:plus" />
 			</button>
 		</form>
