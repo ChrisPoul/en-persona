@@ -35,7 +35,8 @@
 					}}
 				>
 					<div class="flex items-center">
-						<button class="btn-icon variant-ghost-secondary h-6 w-6"
+						<button
+							class="btn-icon variant-ghost-secondary h-6 w-6"
 							on:click={() => {
 								removePlayer(playerIndex);
 							}}

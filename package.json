@@ -39,6 +39,7 @@
   "type": "module",
   "dependencies": {
     "@floating-ui/dom": "1.5.3",
-    "pocketbase": "^0.18.0"
+    "pocketbase": "^0.18.0",
+    "svelte-gestures": "^1.5.2"
   }
 }
