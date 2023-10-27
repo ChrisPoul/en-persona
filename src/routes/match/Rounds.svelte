@@ -1,10 +1,12 @@
 <script lang="ts">
-	import { Tab, TabGroup } from '@skeletonlabs/skeleton';
+	import { Tab, TabGroup, type ModalSettings } from '@skeletonlabs/skeleton';
 	import { press } from 'svelte-gestures';
 	import Round from './Round.svelte';
 	import { currentRoundIndex, rounds } from '$lib/stores/match';
 	import Icon from '@iconify/svelte';
+	import { getModalStore } from '@skeletonlabs/skeleton';
 
+	const modalStore = getModalStore();
 	let deleteButtonIsVisible = false;
 	$: {
 		$currentRoundIndex;
@@ -26,6 +28,21 @@
 		});
 		$rounds = $rounds;
 		$currentRoundIndex = $rounds.length - 1;
+	}
+	function confirmRemoveRound(roundIndex: number) {
+		const modalSettings: ModalSettings = {
+			type: 'confirm',
+			// Data
+			title: 'Confirmar Operación',
+			body: 'Borrar ronda de forma permanente?',
+			response: (confirmedRemoval: boolean) => {
+				if (confirmedRemoval) removeRound(roundIndex);
+				else deleteButtonIsVisible = false;
+			},
+			buttonTextCancel: 'Cancelar',
+			buttonTextConfirm: 'Confirmar'
+		};
+		modalStore.trigger(modalSettings);
 	}
 	function removeRound(roundIndex: number) {
 		if ($rounds.length == 1) return;
@@ -68,9 +85,7 @@
 							on:contextmenu|preventDefault={() => {
 								return;
 							}}
-							on:click={() => {
-								removeRound(roundIndex);
-							}}
+							on:click={() => confirmRemoveRound(roundIndex)}
 						>
 							<Icon icon="fa-solid:trash-alt" />
 						</button>
