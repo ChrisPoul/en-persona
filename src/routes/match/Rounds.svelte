@@ -1,13 +1,9 @@
 <script lang="ts">
-	import { Tab, TabGroup, type ModalSettings } from '@skeletonlabs/skeleton';
-	import { Motion } from 'svelte-motion';
-	import { press } from 'svelte-gestures';
+	import { Tab, TabGroup } from '@skeletonlabs/skeleton';
 	import Round from './Round.svelte';
 	import { currentRoundIndex, rounds } from '$lib/stores/match';
 	import Icon from '@iconify/svelte';
-	import { getModalStore } from '@skeletonlabs/skeleton';
-
-	const modalStore = getModalStore();
+	import RoundsTab from './RoundsTab.svelte';
 
 	function startNewRound() {
 		const lastRoundPlayers = $rounds[$rounds.length - 1].players;
@@ -25,26 +21,6 @@
 		$rounds = $rounds;
 		$currentRoundIndex = $rounds.length - 1;
 	}
-	function confirmRemoveRound(roundIndex: number) {
-		const modalSettings: ModalSettings = {
-			type: 'confirm',
-			// Data
-			title: 'Confirmar Operación',
-			body: 'Borrar ronda de forma permanente?',
-			response: (confirmedRemoval: boolean) => {
-				if (confirmedRemoval) removeRound(roundIndex);
-			},
-			buttonTextCancel: 'Cancelar',
-			buttonTextConfirm: 'Confirmar'
-		};
-		modalStore.trigger(modalSettings);
-	}
-	function removeRound(roundIndex: number) {
-		if ($rounds.length == 1) return;
-		if ($currentRoundIndex == $rounds.length - 1) $currentRoundIndex -= 1;
-		$rounds.splice(roundIndex, 1);
-		$rounds = $rounds;
-	}
 </script>
 
 <div class="card pb-3 w-full overflow-y-hidden">
@@ -61,26 +37,7 @@
 					name={`tab${roundIndex}`}
 					value={roundIndex}
 				>
-					<Motion
-						let:motion
-						whileTap={{ scale: 1.4 }}
-						onTapStart={() => ($currentRoundIndex = roundIndex)}
-					>
-						<div
-							class="flex py-2 px-4 gap-3 items-center cursor-none"
-							use:motion
-							use:press={{ timeframe: 300, spread: 25 }}
-							on:press={() => confirmRemoveRound(roundIndex)}
-							role="article"
-							on:contextmenu|preventDefault={() => {
-								return;
-							}}
-						>
-							<span class="select-none">
-								{roundIndex + 1}
-							</span>
-						</div>
-					</Motion>
+					<RoundsTab {roundIndex} />
 				</Tab>
 			{/each}
 			<Tab bind:group={$currentRoundIndex} name={`tab-with-add-button`} value={null}>
