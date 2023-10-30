@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { Tab, TabGroup, type ModalSettings } from '@skeletonlabs/skeleton';
+	import { Motion } from 'svelte-motion';
 	import { press } from 'svelte-gestures';
 	import Round from './Round.svelte';
 	import { currentRoundIndex, rounds } from '$lib/stores/match';
@@ -7,11 +8,6 @@
 	import { getModalStore } from '@skeletonlabs/skeleton';
 
 	const modalStore = getModalStore();
-	let deleteButtonIsVisible = false;
-	$: {
-		$currentRoundIndex;
-		deleteButtonIsVisible = false;
-	}
 
 	function startNewRound() {
 		const lastRoundPlayers = $rounds[$rounds.length - 1].players;
@@ -37,7 +33,6 @@
 			body: 'Borrar ronda de forma permanente?',
 			response: (confirmedRemoval: boolean) => {
 				if (confirmedRemoval) removeRound(roundIndex);
-				else deleteButtonIsVisible = false;
 			},
 			buttonTextCancel: 'Cancelar',
 			buttonTextConfirm: 'Confirmar'
@@ -49,11 +44,6 @@
 		if ($currentRoundIndex == $rounds.length - 1) $currentRoundIndex -= 1;
 		$rounds.splice(roundIndex, 1);
 		$rounds = $rounds;
-		deleteButtonIsVisible = false;
-	}
-	function handlePress(roundIndex: number) {
-		$currentRoundIndex = roundIndex;
-		deleteButtonIsVisible = true;
 	}
 </script>
 
@@ -65,31 +55,32 @@
 		<div class="flex over">
 			{#each $rounds as _, roundIndex}
 				<Tab
-					class="active:bg-opacity-40 active:bg-surface-500 cursor-none"
+					class="active:bg-opacity-40 active:bg-surface-500"
 					padding="py-0 px-0"
 					bind:group={$currentRoundIndex}
 					name={`tab${roundIndex}`}
 					value={roundIndex}
 				>
-					<div
-						class="flex py-2 px-4 gap-2 items-center"
-						use:press={{ timeframe: 300, triggerBeforeFinished: true, spread: 25 }}
-						on:press={() => {
-							handlePress(roundIndex);
-						}}
+					<Motion
+						let:motion
+						whileTap={{ scale: 1.4 }}
+						onTapStart={() => ($currentRoundIndex = roundIndex)}
 					>
-						{roundIndex + 1}
-						<button
-							class="btn-icon variant-ghost-error hidden text-lg h-9 w-9"
-							class:visible={$currentRoundIndex == roundIndex && deleteButtonIsVisible}
+						<div
+							class="flex py-2 px-4 gap-3 items-center cursor-none"
+							use:motion
+							use:press={{ timeframe: 300, spread: 25 }}
+							on:press={() => confirmRemoveRound(roundIndex)}
+							role="article"
 							on:contextmenu|preventDefault={() => {
 								return;
 							}}
-							on:click={() => confirmRemoveRound(roundIndex)}
 						>
-							<Icon icon="fa-solid:trash-alt" />
-						</button>
-					</div>
+							<span class="select-none">
+								{roundIndex + 1}
+							</span>
+						</div>
+					</Motion>
 				</Tab>
 			{/each}
 			<Tab bind:group={$currentRoundIndex} name={`tab-with-add-button`} value={null}>
@@ -114,9 +105,3 @@
 		</svelte:fragment>
 	</TabGroup>
 </div>
-
-<style>
-	.visible {
-		display: flex;
-	}
-</style>

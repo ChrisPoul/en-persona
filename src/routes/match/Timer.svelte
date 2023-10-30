@@ -20,7 +20,7 @@
 </script>
 
 <div class="flex justify-between pl-1">
-	<span class="flex items-center font-semibold">Timer: {formatedTime}</span>
+	<span class="flex items-center font-semibold">Timer {formatedTime}</span>
 	<div class="flex gap-2">
 		<button class="btn-icon variant-ghost-error text-xl" on:click={resetTimer}>
 			<Icon icon="iconamoon:restart-bold" />

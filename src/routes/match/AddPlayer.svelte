@@ -49,7 +49,7 @@
 
 <div>
 	<label class="gap-1">
-		<b class="px-2">Añadir Jugador:</b>
+		<b class="px-2">Añadir Jugador</b>
 		{#if errorMessage}
 			<p class="text-lg text-center font-bold text-error-600 py-1">
 				{errorMessage}
