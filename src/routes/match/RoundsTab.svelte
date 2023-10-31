@@ -9,6 +9,7 @@
 	const modalStore = getModalStore();
 
 	function confirmRemoveRound(roundIndex: number) {
+		$currentRoundIndex = roundIndex;
 		const modalSettings: ModalSettings = {
 			type: 'confirm',
 			// Data
@@ -20,7 +21,9 @@
 			buttonTextCancel: 'Cancelar',
 			buttonTextConfirm: 'Confirmar'
 		};
-		modalStore.trigger(modalSettings);
+		setTimeout(() => {
+			modalStore.trigger(modalSettings);
+		}, 50);
 	}
 	function removeRound(roundIndex: number) {
 		if ($rounds.length == 1) return;
@@ -32,7 +35,7 @@
 
 <div
 	class="flex py-2 px-4 gap-3 items-center cursor-none"
-	use:press={{ timeframe: 100, spread: 25 }}
+	use:press={{ timeframe: 300, spread: 25 }}
 	on:press={() => confirmRemoveRound(roundIndex)}
 	role="article"
 	on:contextmenu|preventDefault={() => {
