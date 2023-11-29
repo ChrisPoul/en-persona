@@ -4,7 +4,6 @@
 	import { rounds, currentRoundIndex, match } from '$lib/stores/match';
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
-	import { pb } from '$lib/services/pocketbase';
 
 	let ongoingMatch = false;
 
@@ -13,25 +12,7 @@
 			ongoingMatch = true;
 		}
 	});
-	async function saveMatch() {
-		const matchIsValidToSave =
-			$rounds[$rounds.length - 1].players.length >= 2 && $match.gameTitle.length > 0;
-
-		if (!matchIsValidToSave) {
-			return;
-		}
-		try {
-			await pb.collection('matches').create({
-				gameTitle: $match.gameTitle,
-				rounds: $rounds,
-				comments: $match.comments
-			});
-		} catch (error) {
-			console.log('No internet');
-		}
-	}
 	function startNewMatch() {
-		saveMatch();
 		$rounds = [
 			{
 				players: [],
