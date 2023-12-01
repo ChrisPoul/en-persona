@@ -1,7 +1,5 @@
 <script lang="ts">
 	import GameTitle from './GameTitle.svelte';
-	import CommentSection from './CommentSection.svelte';
-	import { FileButton } from '@skeletonlabs/skeleton';
 	import Rounds from './Rounds.svelte';
 	import Timer from './Timer.svelte';
 </script>
@@ -14,10 +12,6 @@
 		</div>
 		<div class="card flex flex-col gap-2 px-3 pt-4 pb-6 w-full h-min">
 			<Timer/>
-			<CommentSection />
-			<div class="flex justify-center pt-5">
-				<FileButton name="files" button="btn variant-filled text-xl">Subir Foto</FileButton>
-			</div>
 		</div>
 	</div>
 </div>
